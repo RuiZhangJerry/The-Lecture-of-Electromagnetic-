@@ -40,12 +40,12 @@
 
 \section{Maxwell 方程的发展与推导及其物理含义}
 \subsection{静电场}
-\paragraph{场强矢量$\bm{E}$}在真空中放置一个点电荷，那么这个电荷会在空间中激发出电场，物理学中使用电场线来刻画电场的方向和大小，电场线从正电荷出发，指向负电荷，这便是场强的方向。而场强的大小是通过穿过单位面积的电场线的条数来定义的，即:
+\paragraph{$\bullet$ 场强矢量$\bm{E}$}在真空中放置一个点电荷，那么这个电荷会在空间中激发出电场，物理学中使用电场线来刻画电场的方向和大小，电场线从正电荷出发，指向负电荷，这便是场强的方向。而场强的大小是通过穿过单位面积的电场线的条数来定义的，即:
 \begin{equation}\label{electricfield}
 |\bm{E}|=\frac{N_e}{S},
 \end{equation}
 而穿过给定面积的曲面的电场线条数又叫做穿过这个曲面的\textbf{电通量}，所以电场强度的\textbf{大小}又称为\textbf{电通量密度}，见图 \ref{eandcoulumb} 左。
-\paragraph{库仑力}位于坐标原点的点电荷$q$对位于$\bm{r}$处的试探电荷$Q$的电场力为：
+\paragraph{$\bullet$ 库仑力}位于坐标原点的点电荷$q$对位于$\bm{r}$处的试探电荷$Q$的电场力为：
 \begin{equation}\label{coulombforce}
 \bm{F}(\bm{r}) = \frac{1}{4\pi\varepsilon_0}\frac{Qq\bm{r}}{|\bm{r}|^3}.
 \end{equation}
@@ -62,18 +62,102 @@
 	\label{eandcoulumb}
 \end{figure}
 
-\paragraph{电场在真空中的高斯定律}
+\paragraph{$\bullet$ 电场在真空中的高斯定律}
+设$S$为空间中的一闭合曲面，我们考虑这个闭合曲面的电通量，如图 \ref{gaussthm}左。\textbf{高斯定律} 揭示了闭合曲面的电通量$\Phi_e$, 与该曲面所围成的立体中的电荷总量$\sum q_i$的关系: 
+\begin{equation}\label{gaussthm}
+\displaystyle \Phi_e = \frac{\sum q_i}{\varepsilon_0} 
+\end{equation}
+
+为了计算$\Phi_e$, 我们在闭合曲面上任取一面积微元 $\mathrm{d}S$, 设场强方向与曲面外法向的夹角为$\theta$, 如图 \ref{gaussthm}右，因为场强的大小等于电通量密度，则在$\mathrm{d}S$上的电通量为 
+$$E \cos \theta \mathrm{d}S =  \bm{E}\cdot \mathrm{d}\bm{S}$$
+于是整个曲面的电通量为
+\begin{equation}\label{tongliang}
+\Phi_e = \oint_{S}\bm{E}\cdot \mathrm{d}\bm{S}，
+\end{equation}
+
+进一步，考虑到曲面内的电荷有可能为一般的连续带电体，其电量无法用简单的离散求和来表示，故设曲面内部$\Omega$的电荷体密度为$\rho_e$,  则高斯定律便可写为更一般的形式
+\begin{equation}\label{gaussint}
+\displaystyle \oint_{S}\bm{E}\cdot \mathrm{d}\bm{S} =\frac{1}{\varepsilon_0} \int_\Omega \rho_e \mathrm{d}\Omega.
+\end{equation}
+
+又由向量微积分中的散度定理，我们得到
+\begin{equation}\label{gaussdiv}
+\int_\Omega \nabla\cdot \bm{E} \mathrm{d}S = \int_\Omega \rho_e\mathrm{d}\Omega,
+\end{equation}
+由于闭合曲面的任意性，我们得到了真空中电场高斯定律的微分形式：
+\begin{equation}\label{gaussthmdiff}
+\nabla\cdot \varepsilon_0 \bm{E} = \rho_e.
+\end{equation}
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/GaussThmFig}
+	\caption {左：空间中的闭合曲面$S$，右：$\mathrm{d}S$上的电通量示意图. }
+	\label{gaussthm}
+\end{figure}
+\newpage
+
+\paragraph{$\bullet$ 电偶极子} 电偶极子是空间中的一对距离很近电量相等但电性相反的点电荷系统。静电学中使用\textbf{电偶极矩}, 记为$\bm{p}$, 来刻画它们，偶极矩是一个向量，规定其从负电荷指向正电荷，若两个电荷电量的模为$q$, 其距离向量为$\bm{d}$, 则电偶极矩定义为
+\begin{equation}\label{dipole}
+\bm{p} = q\bm{d}.
+\end{equation}
+
+\paragraph{$\bullet$ 电介质的极化现象} 在电场中放置电介质，介质中的分子会发生极化现象，首先由于介质本身并非导体，所以介质内部不会有自由电子在整个介质中运动（像金属），而是由大量的分子构成的，而分子分为极性分子和非极性分子，为了清晰描述极化的过程，我们以非极性分子为例，极性分子的极化虽然较为复杂也稍有不同，但本质机理还是一样的。
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/polarlization}
+	\caption {非极性分子极化过程示意图. }
+	\label{polarlization}
+\end{figure}
+
+如图 \ref{polarlization} 所示，非极性分子在没有电场的情况下，正负电荷的中心相互重合， 在有了电场之后，由于正电荷与负电荷收到库仑力的作用发生偏移，分子也会在电场中发生旋转，最终形成了一个等效的电偶极子$\bm{p}_i$. 在稳恒电场中，等效的电偶极子的偶极矩与场强方向平行。如此一来，在分子的两端就产生了\textbf{极化电荷}，由于极化产生的电荷不是自由电荷，无法自由运动到分子外部，因此有的文献也称为\textbf{束缚电荷}（Bound Charges）.
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/jihuashiyan}
+	\caption {电介质的极化现象示意图. }
+	\label{jihuashiyan}
+\end{figure}
+
+现在考虑整个电介质，如图 \ref{jihuashiyan}, 在电介质中每个分子在电场的作用下发生极化现象，于是产生了极化电荷, 显然极化电荷由内部极化电荷和表面极化电荷组成，如图中的介质内部红色标示的电荷与介质表面红色标示的电荷。如果没有介质，在两块电极板上会有一定量的电荷，如图中极板上黑色标示的电荷，一旦放入电介质，由于介质表面产生了极化电荷，而这部分电荷又会在极板上感应出相反的电荷，如图中蓝色标示的电荷，所以加入电介质后极板上的电荷总量反而比原来增加了。
+
+由于每个极化分子都有一个偶极矩，故我们定义一个来刻画电介质受到极化的强度的物理量称为\textbf{电极化密度矢量}，记作 $\bm{P}$，它等于单位体积中偶极矩之和，即：
+\begin{equation}
+\bm{P} = \frac{\sum {\bm{p}_i}}{V}, 
+\end{equation}
+而当电场稳恒时，每个极化分子的偶极矩与电场方向平行，故整个电极化密度矢量$\bm{P}$也与电场方向平行，且满足：
+\begin{equation}\label{P=kappaE}
+\bm{P} = \varepsilon_0\chi_e \bm{E}, 
+\end{equation}
+其中$\chi_e$称为\textbf{电极化率}。
+介质内的极化电荷同样有密度，而介质内部的极化电荷密度与极化密度矢量之间有如下关系：
+\begin{equation}\label{innercontribute}
+{Q}_{in} = -\nabla \cdot \bm{P}.
+\end{equation}
+
+\paragraph{$\bullet$ 电场在介质中的高斯定律} 由于介质内部的电荷量是自由电荷和极化电荷的总和，因此在介质内部的高斯定律需要加上内部极化电荷量，即
+\begin{equation}\label{jiezhizhong}
+\oint_S \bm{E}\cdot \mathrm{d}\bm{S} = \frac{1}{\varepsilon_0}\left[ \int_\Omega \rho_e \mathrm{d}\Omega-\int_\Omega \nabla\cdot\bm{P} \mathrm{d}\Omega \right],
+\end{equation} 
+由式 	\eqref{P=kappaE}, 与\eqref{innercontribute}, 式	\eqref{jiezhizhong} 可写为
+\begin{equation}
+\int_{\Omega} \nabla\cdot[(1+\chi_e)\varepsilon_0\bm{E}]\mathrm{d}\Omega = \int_\Omega \rho_e \mathrm{d}\Omega,
+\end{equation}
+令 
+$$\bm{D} = (1+\chi_e)\varepsilon_0\bm{E}:= \varepsilon \bm{E},$$
+其中$\varepsilon=(1+\chi_e)\varepsilon_0$称为\textbf{介质中的介电常数}, 而$\varepsilon_r:=1+\chi_e$ 为\textbf{相对介电常数}。
+于是我们得到了\textbf{介质中的高斯定律}：
+\begin{equation}\label{gaussThmgeneral}
+\color{magenta}{\boxed{\nabla\cdot \bm{D} = \rho_e }} 
+\end{equation}
+显然，通过上述对介质中的介电常数的定义可知，介质中的高斯定律是真空中的推广。
 
 
 
 
 
-
-
-
-\section{电磁场的势表示}
-\section{电磁波及其在空间中传播的模型}
-\section{无界区域的处理 —— 吸收人工边界方法}
+%\section{电磁场的势表示}
+%\section{电磁波及其在空间中传播的模型}
+%\section{无界区域的处理 —— 吸收人工边界方法}
 
 
 
