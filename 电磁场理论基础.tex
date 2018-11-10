@@ -129,12 +129,12 @@ $$E \cos \theta \mathrm{d}S =  \bm{E}\cdot \mathrm{d}\bm{S}$$
 \bm{P} = \varepsilon_0\chi_e \bm{E}, 
 \end{equation}
 其中$\chi_e$称为\textbf{电极化率}。
-介质内的极化电荷同样有密度，而介质内部的极化电荷密度与极化密度矢量之间有如下关系：
+而介质内部的极化电荷与极化密度矢量之间有如下关系：
 \begin{equation}\label{innercontribute}
-{Q}_{in} = -\nabla \cdot \bm{P}.
+{Q}_{in} = -\int_{\Omega}\nabla \cdot \bm{P}\mathrm{d}\Omega.
 \end{equation}
 
-\paragraph{$\bullet$ 电场在介质中的高斯定律} 由于介质内部的电荷量是自由电荷和极化电荷的总和，因此在介质内部的高斯定律需要加上内部极化电荷量，即
+\paragraph{$\bullet$ 电场在介质中的高斯定律} 由于介质内部的电荷量是自由电荷和极化电荷的总和，因此在介质内部的高斯定律需要加上内部极化电荷量$Q_{in}$，即
 \begin{equation}\label{jiezhizhong}
 \oint_S \bm{E}\cdot \mathrm{d}\bm{S} = \frac{1}{\varepsilon_0}\left[ \int_\Omega \rho_e \mathrm{d}\Omega-\int_\Omega \nabla\cdot\bm{P} \mathrm{d}\Omega \right],
 \end{equation} 
