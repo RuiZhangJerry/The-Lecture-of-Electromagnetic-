@@ -151,6 +151,46 @@ $$\bm{D} = (1+\chi_e)\varepsilon_0\bm{E}:= \varepsilon \bm{E},$$
 \end{equation}
 显然，通过上述对介质中的介电常数的定义可知，介质中的高斯定律是真空中的推广。
 
+\newpage
+
+\paragraph{$\bullet$ 电场力做功} 在电场中的带电粒子会受到库仑力的作用，这一小节我们来研究电场力对电荷的做功，设电场中带有\textbf{单位电量}的粒子从$A$点沿某一路径运动到$B$点 取线微元 $\mathrm{d}l$, 曲线切方向为$\bm{t}$, 并与场强方向的夹角为$\theta$，如图 \ref{dianchanglizuogong}, 注意到电场强度表达式\eqref{columb}，经简单计算可知整个过程库仑力所做的功为
+\begin{equation}\label{coulumbwork}
+W = \int_{l}\bm{E}\cdot\mathrm{d}\bm{l} = \phi(B) - \phi(A),
+\end{equation}
+其中$\phi(\bm{r})$称为在$\bm{r}$处的\textbf{电势}，满足
+$$ \bm{E} = -\nabla\phi, $$
+由式\eqref{coulumbwork}可见，\textbf{电场力做功与路径无关，只与粒子始末位置有关}，并等于两点的\textbf{电势差}。因此\eqref{coulumbwork}中的积分称为\textbf{路径积分}. 
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/dianchanglizuogong}
+	\caption {带电粒子在电场中运动示意图. }
+	\label{dianchanglizuogong}
+\end{figure}
+
+\paragraph{$\bullet$ 真空电场中的环路定理} 本节考虑带电粒子在真空电场中的一种特殊的运动轨迹——封闭的环路, 如图 
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/dianchanghuanludingli}
+	\caption {电场的环路定理示意图. }
+	\label{dianchanghuanludingli}
+\end{figure}
+
+那么由\eqref{coulumbwork}可知只要电场是稳恒的不随时间变化，那么电场力所做的功为零，用数学语言描述就是
+\begin{equation}
+\oint_l \bm{E}\cdot \mathrm{d}\bm{l} = 0,
+\end{equation}
+再利用旋度定理，我们得到
+\begin{equation}
+\int_S \nabla \times \bm{E} \cdot \mathrm{d}\bm{S} = 0,
+\end{equation}
+于是我们得到了电场的\textbf{环路定理}：
+\begin{equation}\label{dianchanghuanludingli}
+\color{magenta}\boxed{\nabla\times\bm{E} = 0}
+\end{equation}
+
+需要指出的是，即使在空间中存在介质，那么介质内部的环路定理依然是\eqref{dianchanghuanludingli}，因为不管在何种介质中，不管电场是否是极化电荷产生的，只要电场力做功，那么做功都只与始末位置有关，与路径无关，所以依然满足式\eqref{dianchanghuanludingli}。
+
 
 
 
