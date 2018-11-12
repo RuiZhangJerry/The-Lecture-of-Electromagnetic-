@@ -13,7 +13,7 @@
 
 
 \usepackage{epsfig,subfigure,amssymb,amsmath,version}
-\usepackage{amssymb,version,graphicx,fancybox,mathrsfs,bm,pifont,booktabs}%,wrapfig}
+\usepackage{amssymb,version,graphicx,fancybox,mathrsfs,bm,pifont,booktabs,framed}%,wrapfig}
 \usepackage{cases}
 \usepackage{epstopdf}
 
@@ -168,12 +168,12 @@ $$ \bm{E} = -\nabla\phi, $$
 	\label{dianchanglizuogong}
 \end{figure}
 
-\paragraph{$\bullet$ 真空电场中的环路定理} 本节考虑带电粒子在真空电场中的一种特殊的运动轨迹——封闭的环路, 如图 
+\paragraph{$\bullet$ 真空电场中的环路定理} 本节考虑带电粒子在真空电场中的一种特殊的运动轨迹——封闭的环路, 如图 \ref{dianchanghuanlu}
 \begin{figure}[htp]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Figures/dianchanghuanludingli}
 	\caption {电场的环路定理示意图. }
-	\label{dianchanghuanludingli}
+	\label{dianchanghuanlu}
 \end{figure}
 
 那么由\eqref{coulumbwork}可知只要电场是稳恒的不随时间变化，那么电场力所做的功为零，用数学语言描述就是
@@ -190,6 +190,80 @@ $$ \bm{E} = -\nabla\phi, $$
 \end{equation}
 
 需要指出的是，即使在空间中存在介质，那么介质内部的环路定理依然是\eqref{dianchanghuanludingli}，因为不管在何种介质中，不管电场是否是极化电荷产生的，只要电场力做功，那么做功都只与始末位置有关，与路径无关，所以依然满足式\eqref{dianchanghuanludingli}。
+
+\subsection{静磁场} 上一节介绍了静电场，接下来我们继续介绍静磁场。
+\paragraph{$\bullet$ 磁感线} 类似于电场，在真空中放置一块磁铁会在空间中激发\textbf{磁场}，磁场也可以使用类似于电场线的\textbf{磁感线}来进行刻画，磁感线从磁铁的$N$极出发指向$S$极，构成一个\textbf{封闭的环线}，任意两条磁感线不会相交打结。穿过某个曲面的磁感线条数称为\textbf{磁通量}。
+
+\paragraph{$\bullet$ 磁通量密度矢量 $\bm{B}$} 在电场中场强的刻画使用了电通量密度矢量，类似的，在磁场中为了刻画磁场也定义了\textbf{磁通量密度矢量}，国内的教材上通常称为\textbf{磁感应强度}，记为$\bm{B}$. 其大小等于穿过单位面积的磁感线条数，即：
+\begin{equation}\label{citongmidu}
+|\bm{B}| = \frac{N_m}{S}, 
+\end{equation}
+{\color{blue}{
+\fbox{\begin{minipage}{\dimexpr\linewidth-2\fboxsep-2.2pt}
+ \paragraph{$\clubsuit$ 电生磁} 在历史上很长一段时间物理学家在研究电场和磁场的时候是各自研究各自的互相不联系，直到安培和奥斯忒做了一个划时代的实验：将一根通电导线靠近一个小磁针，他们发现小磁针发生了微弱的偏转，但只要将导线撤离，那么磁针又回到了平衡位置，重复做该试验发现每次现象都是一样的，由此发现了电能产生磁。从此开始了探寻电与磁之间关系的研究。
+\end{minipage}}
+}}
+
+\paragraph{$\bullet$ 洛伦兹力} 洛伦兹最先研究了带电粒子在磁场中的受力情况，首先他发现静止的电荷不受力，平行于磁场方向运动的电荷依然不受力，只有当电荷的运动有分量垂直于磁场方向时电荷才受到力的作用，由此得到了\textbf{洛伦兹定律}：磁场中运动的电荷收到磁场力的作用，这个力称为\textbf{洛伦兹力}。设电荷电量为$q$, 则洛伦兹力为：
+\begin{equation}
+\bm{F} = q\bm{v}\times\bm{B},
+\end{equation}
+自然地，如果空间中除了磁场还外加了电场，则电荷在电磁场中除了受到磁场力外还受到了库仑力，故合力为
+\begin{equation}\label{lorentz}
+\bm{F} = q(\bm{E+v\times B}).
+\end{equation}
+\paragraph{$\bullet$ 磁场与电流的关系—— 毕奥-萨伐尔定律} 洛伦兹研究了带电粒子在磁场中的受力情况，但依然没有解决最初的问题，电流和磁场到底有什么定量的关系？通过实验和理论推导，毕奥和萨伐尔最终得到了通过导线$\bm{l}$的电流$I$和磁场$\bm{B}$的定量关系：
+\begin{equation}\label{biotsavertthem}
+\displaystyle \bm{B}(\bm{r}) = \frac{\mu_0}{4\pi}\int_l \frac{I\mathrm{d}\bm{l}\times(\bm{r}-\bm{r}^\prime)}{|r-r^\prime|^3}=\frac{\mu_0}{4\pi}\int_l \frac{\bm{J}_e\times(\bm{r}-\bm{r}^\prime)}{|r-r^\prime|^3}\mathrm{d}\bm{r}^\prime, 
+\end{equation}
+其中，$\mu_0$称为真空中的\textbf{磁导率}，$\bm{J}_e$称为\textbf{传导电流密度}。
+
+\paragraph{$\bullet$ 真空中磁场的高斯定律} 类似于电场，这一节我们介绍磁场中的一个重要的定理：\textbf{闭合曲面的磁通量为零}。这个定理称为高斯定律。我们从直观上来理解这个定理，假设空间中有一段通电导线，其电流量为$I$, 则根据毕奥-萨伐尔定律，这个导线在空间中产生了磁通量密度为$B$的磁场其方向满足右手螺旋定则。现在将任意一个闭合曲面$S$放到磁场中，如图 \ref{cichanggaosidingli} 左，那么磁感线便会穿过曲面，如图 \ref{cichanggaosidingli} 右. 
+
+由于磁感线一定是一个封闭的环，那么只要有一条磁感线从曲面的某个位置穿进去，则必定会从另一个地方穿出来，以此才能形成闭合环线，所以所有穿进曲面的磁感线都必定会全部穿出来，则整个闭合曲面的磁通量就为零。
+
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figures/cichanggaosidingli}
+	\caption {磁场的高斯定律示意图. }
+	\label{cichanggaosidingli}
+\end{figure}
+
+用公式描述便是：
+\begin{equation}
+\displaystyle \oint_S \bm{B}\cdot \mathrm{d}\bm{S} = 0,
+\end{equation}
+又根据散度定理，得到：
+\begin{equation}\label{cichanggaosidingli}
+\color{magenta}\boxed{\nabla\cdot\bm{B} = 0}
+\end{equation}
+即使在磁介质中，不管是以何种方式产生磁场，只要是磁感线，就必定是封闭环线，那么介质中的闭合曲面的磁通量依然为零，故在磁介质中的高斯定理依然是式\eqref{cichanggaosidingli}. 
+
+\paragraph{$\bullet$ 真空磁场中的安培环流定理} 在静电场中，电通量密度矢量沿闭合环路的第二类曲线积分为零，在磁场中也有对于磁通量密度沿闭合环路的积分（成为\textbf{环流}）的定理，如图 \ref{cichanghuanliudingli}。
+\begin{figure}[htp]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/cichanghuanliudingli}
+	\caption {磁场的安培环流定律示意图. }
+	\label{cichanghuanliudingli}
+\end{figure}
+
+但与洛伦兹力做功无关，而是与环线所围成的曲面上所有的\textbf{电流}的代数和成正比，这便是著名的安培环流定理：
+\begin{equation}\label{huanliu}
+\displaystyle  \oint_l \bm{B}\cdot \mathrm{d}\bm{l} =  \mu_0\sum{I_i} = \mu_0\int_S \bm{J}_e \cdot \mathrm{d}\bm{S}.
+\end{equation}
+其中考虑到面上的电流可能是连续的电流体，其密度就为$\bm{J}_e$, 则总电流便可写成式\eqref{huanliu} 中第二个等号后的面积分。
+
+再由旋度定理可得：
+\begin{equation}\label{cichanghuanliudingli}
+\color{magenta}\boxed{\nabla\times\frac{\bm{B}}{\mu_0} = \bm{J}_e}
+\end{equation}
+
+
+\paragraph{$\bullet$ 磁介质}
+
+
+
+
 
 
 
