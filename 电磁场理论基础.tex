@@ -5,7 +5,7 @@
 \usepackage[notcite,notref]{showkeys}
 
 \usepackage{url,hyperref,multirow}
-\usepackage{color}
+\usepackage[usenames, dvipsnames]{color}
 \usepackage{stmaryrd}
 \usepackage{exscale}
 \usepackage{setspace}
@@ -31,10 +31,24 @@
 \newtheorem{remark}{注}[section]
 \newtheorem{example}{例}[section]
 
+\setCJKmainfont[AutoFakeBold=3]{Songti SC} % 使得加粗后依然是宋体，只能在Mac上使用！！！
+
+
 \begin{document}
-\title{电磁场理论基础}
+\begin{titlepage}
+\title{ \textbf{电磁场理论基础}}
 \author{张\quad 瑞}
 \maketitle
+\pagestyle{empty}
+\thispagestyle{empty}
+\end{titlepage}
+%\newpage
+\begin{titlepage} 
+\tableofcontents
+%\listoftables
+\listoffigures
+\end{titlepage}
+%\newpage
 \section{简介}
 本文拟从电场与磁场的基本物理定律出发，推导出电磁场的Maxwell方程，再通过Maxwell方程得到电场和磁场在空间中的存在形式，即电磁波，而后研究电磁波在空间中传播的由简单到一般的各种模型。由于传播空间的无界性，在实际使用有限元计算的时候，需要应对无界区域，从而导出人工边界方法和完美匹配层 （PML）方法。
 
@@ -75,7 +89,7 @@ $$E \cos \theta \mathrm{d}S =  \bm{E}\cdot \mathrm{d}\bm{S}$$
 \Phi_e = \oint_{S}\bm{E}\cdot \mathrm{d}\bm{S}，
 \end{equation}
 
-进一步，考虑到曲面内的电荷有可能为一般的连续带电体，其电量无法用简单的离散求和来表示，故设曲面内部$\Omega$的电荷体密度为$\rho_e$,  则高斯定律便可写为更一般的形式
+进一步，考虑到曲面内的电荷有可能为一般的连续带电体，其电量无法用简单的离散求和来表示，故设曲面内部$\Omega$的电荷体密度为$\rho_e$,  则高斯定律便可写为更一般的形式:
 \begin{equation}\label{gaussint}
 \displaystyle \oint_{S}\bm{E}\cdot \mathrm{d}\bm{S} =\frac{1}{\varepsilon_0} \int_\Omega \rho_e \mathrm{d}\Omega.
 \end{equation}
@@ -147,11 +161,11 @@ $$\bm{D} = (1+\chi_e)\varepsilon_0\bm{E}:= \varepsilon \bm{E},$$
 其中$\varepsilon=(1+\chi_e)\varepsilon_0$称为\textbf{介质中的介电常数}, 而$\varepsilon_r:=1+\chi_e$ 为\textbf{相对介电常数}。
 于是我们得到了\textbf{介质中的高斯定律}：
 \begin{equation}\label{gaussThmgeneral}
-\color{magenta}{\boxed{\nabla\cdot \bm{D} = \rho_e }} 
+\color{magenta}{\boxed{\nabla\cdot \bm{D} = \rho_e ,\ \  (\bm{D}=\varepsilon \bm{E})}} 
 \end{equation}
 显然，通过上述对介质中的介电常数的定义可知，介质中的高斯定律是真空中的推广。
 
-\newpage
+%\newpage
 
 \paragraph{$\bullet$ 电场力做功} 在电场中的带电粒子会受到库仑力的作用，这一小节我们来研究电场力对电荷的做功，设电场中带有\textbf{单位电量}的粒子从$A$点沿某一路径运动到$B$点 取线微元 $\mathrm{d}l$, 曲线切方向为$\bm{t}$, 并与场强方向的夹角为$\theta$，如图 \ref{dianchanglizuogong}, 注意到电场强度表达式\eqref{columb}，经简单计算可知整个过程库仑力所做的功为
 \begin{equation}\label{coulumbwork}
@@ -255,21 +269,195 @@ $$ \bm{E} = -\nabla\phi, $$
 
 再由旋度定理可得：
 \begin{equation}\label{cichanghuanliudingli}
-\color{magenta}\boxed{\nabla\times\frac{\bm{B}}{\mu_0} = \bm{J}_e}
+{\nabla\times\frac{\bm{B}}{\mu_0} = \bm{J}_e}
 \end{equation}
 
+\paragraph{$\bullet$ 磁介质的磁化现象} 在磁场中也可以放入磁介质，磁介质依据放入空间后对整个空间的磁场的增减依次分为\textbf{铁磁质}、\textbf{顺磁质}和\textbf{抗磁质}。在静电场中我们知道电介质会发生极化现象从而产生了极化电荷进而影响了电场在介质中的高斯定理；在磁场中，磁介质同样会发生磁化现象，磁化的机理与\textbf{分子电流}有关. 在一个分子内部实质上包含了很多原子核和核外电子，其中核外电子绕核运动并且伴随\textbf{自旋}现象，分子内部的模型并不能简单的认为类似地球绕着太阳公转并伴随自转的天体物理模型，其本质由满足于薛定谔方程的概率波函数来刻画的。正是由于分子内部这种特殊的量子状态，自旋引起了一个\textbf{自旋磁矩}，绕轨道运动产生了一个\textbf{轨道磁矩}，但轨道磁矩要弱得多，所以在分子内部自旋磁矩起主导作用，整个分子所有的磁矩矢量和称为\textbf{分子磁矩}，记为$\bm{m}$。在有外加磁场的作用下，在分子的内部就会等效于一个小的\textbf{圆电流}，称为分子电流。
 
-\paragraph{$\bullet$ 磁介质}
+接下来考虑宏观的磁介质，由于磁介质中有很多分子，每个分子都有各自的磁矩，因此类似于电介质中的电极化密度矢量，磁介质中也可以定义\textbf{磁化密度矢量}, 记为$\bm{M}$, 等于单位体积内所有磁矩的矢量和，即：
+\begin{equation}
+\displaystyle \bm{M} = \frac{\sum \bm{m}_i}{V}.
+\end{equation}
+
+磁介质受到磁化时每个分子由于产生了分子电流，则整体的介质就会产生一种电流，称为\textbf{磁化电流}，记作$I^\prime$，我们感兴趣的是通过任意闭合曲线$l$为边界的曲面$S$的磁化电流，其大小与磁化密度矢量有关：
+\begin{equation}\label{cihuadianliu}
+I^\prime = \oint_l \bm{M}\cdot\mathrm{d}\bm{l},
+\end{equation}
+
+\paragraph{$\bullet$ 磁介质中的安培环流定理} 由于在磁场中放置了磁介质，而磁介质内部会产生磁化电流，因此在介质中的任意闭合曲线所围的曲面上除了有传导电流之外还有磁化电流，因此真空中的磁场安培环流定理需要做一些修正，即：
+\begin{equation}
+\oint_l \frac{\bm{B}}{\mu_0}\cdot \mathrm{d}\bm{l} = \int_S \bm{J}_e\cdot\mathrm{d}\bm{S}+I^\prime=\int_S \bm{J}_e\cdot\mathrm{d}\bm{S}+\oint_l \bm{M}\cdot\mathrm{d}\bm{l},
+\end{equation}
+于是我们得到
+\begin{equation}
+\oint_l \left(\frac{\bm{B}}{\mu_0}-\bm{M}\right) \cdot \mathrm{d}\bm{l}= \int_S \bm{J}_e\cdot\mathrm{d}\bm{S},
+\end{equation}
+令：
+\begin{equation}\label{cichangqiangdu}
+\bm{H} := \frac{\bm{B}}{\mu_0}-\bm{M},
+\end{equation}
+称为\textbf{磁场强度}，这就是为什么在一开始描述磁场的时候我们没有想电场那样将磁通量密度矢量也定义成磁场强度，因为这是两个不同的物理量。如果介质是\textbf{线性磁介质}， 那么，磁矩$\bm{M}$同样也平行于磁场方向，且满足：
+\begin{equation}
+\bm{M}=\mu_0\chi_m \bm{H},
+\end{equation}
+则有
+\begin{equation}
+\bm{H}=\frac{\bm{B}}{\mu_0(1+\chi_m)}:=\frac{\bm{B}}{\mu},
+\end{equation}
+其中$\mu$称为介质中的磁导率，$\mu_r:=1+\chi_m$为相对磁导率。
+介质中的安培环流定理可写为：
+\begin{equation}\label{cichanghuanliudinglijifen}
+\oint_l \bm{H}\cdot\mathrm{d}\bm{l} = \int_S \bm{J}_e\cdot\mathrm{d}\bm{S},
+\end{equation}
+
+同样使用旋度定理，我们得到了微分形式：
+\begin{equation}\label{jiezhicichanghuanludingli}
+\color{magenta}\boxed{\nabla\times\bm{H} = \bm{J}_e,\ \ (\bm{H}=\frac{\bm{B}}{\mu})}
+\end{equation}
+仍然需要注意的是，带了磁介质的安培环流定理是真空中的安培环流定理的推广。
+\\ \hspace*{\fill} \\
+{\color{BrickRed}{
+\fbox{\begin{minipage}{\dimexpr\linewidth-2\fboxsep-2.2pt}
+ \paragraph{$\clubsuit\clubsuit$ 磁生电} 有了电能生磁，我们就得到了四个基本的方程，即电场中的高斯定理\eqref{gaussThmgeneral}，电场中的环路定理\eqref{dianchanghuanludingli}，磁场中的高斯定理\eqref{cichanggaosidingli}以及磁场中的安培环流定理\eqref{jiezhicichanghuanludingli}, 从这些方程我们可以看出电场和磁场的规律具有很强的\textbf{对称性}, 因此法拉第看到了这些结论之后，便开始思考，即然电能产生磁，那么磁能否产生电呢？考虑到对称性，他坚定的认为磁一定能生电。在长达七年之久的不断试验，最终他成功地证实了自己的猜想——磁确实可以产生电！而且还得到了磁与电的定量描述——\textbf{法拉第电磁感应定律}。这个发现将电和磁真正的统一在一起，不光是对理论物理学产生了划时代和里程碑的意义，而且对整个世界的工业和人类的生活都有举足轻重的意义。
+\end{minipage}}
+}}
+
+\subsection{法拉第电磁感应定律} 法拉第电磁感应定律揭示了磁生电的定量关系，即在磁场中的闭合线圈内由磁场产生的电压（称为\textbf{感应电动势}）等于穿过该闭合线圈所谓的曲面磁通量的变化率的相反数，用数学语言描述就是：
+\begin{equation}\label{faladidianciganyingdinglv}
+\mathscr{E}=-\frac{\partial\bm{B}}{\partial t}.
+\end{equation}
+
+既然是要改变穿过线圈的磁通量才能产生电压，那么自然就有两种方式，一种是磁场不变，通过转动线圈来改变磁通量，这样产生的感应电动势称为\textbf{动生电动势}；另一种便是线圈保持固定不动，通过改变磁场大小来改变磁通量，这样产生的电动势称为\textbf{感生电动势}。不论何种方式产生电动势，其大小都满足式\eqref{faladidianciganyingdinglv}.
+
+引入时间变量后，涉及电场和磁场方程的量均有了时间分量，即：$\bm{E}(\bm{x},t)$, $\bm{B}(\bm{x},t)$, $\bm{D}(\bm{x},t)$,  $\bm{H}(\bm{x},t)$, $\bm{J}_e(\bm{x},t)$, $\rho_e(\bm{x},t)$, 也就是说这些量都应理解为随时间在变化的量了。由于引入了时间分量，那么电磁场的方程又会有一些修正。
+
+\paragraph{$\bullet$ 对电场环路定理的修正} 由于磁场随时间变化产生了感应电动势，也即感应电势差，而在电场力做功的推导过程我们发现电场力在两点间所做的功就是电势差，因此闭合环路电场力做功\eqref{dianchanghuanludingli}除了外加电场做功（为零）还应该加上磁场随时间变化而产生的感应电场所做的功，也就是感应电动势，值得注意的是，即使始末位置相同，但由于感应电势随着时间变化，从起点到终点经历了一段时间后，两点的的电势就不一定相等，所以做功不一定为零，由此，我们得到了修正之后（引入了时间）的环路定理：
+\begin{equation}\label{timedianchanghuanludinglijifen}
+\oint_{l}\bm{E}\cdot \mathrm{d}\bm{l} = -\frac{\mathrm{d}}{\mathrm{d}t}\int_S \bm{B}\cdot\mathrm{d}\bm{S} = -\int_{S}\frac{\partial\bm{B}}{\partial t}\cdot \mathrm{d}\bm{S},
+\end{equation}
+由旋度定理得到\textbf{时域电场环路定理}微分形式：
+\begin{equation}\label{timedianchanghuanludingli}
+\color{Red}\boxed{\nabla\times\bm{E} = -\frac{\partial\bm{B}}{\partial t}}
+\end{equation}
+
+\paragraph{$\bullet$ 对磁场安培环流定理的修正} 静磁场中安培环流定理告诉我们，磁场强度的环流等于闭环所围曲面的电流之代数和。由于静磁场不随时间变化，因此全部的电流就是传导电流（分子电流项已经归并到磁场强度矢量中了），但在电场中引入时间后，由于电场随着时间在变化，\textbf{麦克斯韦}在实验中发现了矛盾，由此发现随时间变化的电场会产生\textbf{位移电流}。位移电流的密度大小等于穿过闭合环线所围曲面的电通量变化率，即
+\begin{equation}\label{weiyidianliu}
+I_0 =  \int_{S} \frac{\partial \bm{D}}{\partial t}\cdot \mathrm{d}\bm{S},
+\end{equation}
+于是在静磁场安培环流定理\eqref{cichanghuanliudingli}中就需要加上一项位移电流$I_0$, 即：
+\begin{equation}
+\oint_l \bm{H}\cdot\mathrm{d}\bm{l} = \int_S\bm{J}_e\cdot\mathrm{d}\bm{S} + \int_{S}\frac{\partial\bm{D}}{\partial t}\cdot \mathrm{d}\bm{S}
+\end{equation}
+由旋度定理我们得到了\textbf{时域磁场环流定理}的微分形式：
+
+\begin{equation}\label{timecichanghuanliudingli}
+\color{Red}\boxed{\nabla\times\bm{H} = \frac{\partial\bm{D}}{\partial t}+\bm{J}_e}
+\end{equation}
+
+\subsection{Maxwell 方程组} 联立方程\eqref{timedianchanghuanludingli}, \eqref{timecichanghuanliudingli}, \eqref{gaussThmgeneral} 以及 \eqref{cichanggaosidingli}, 我们得到了时域Maxwell 方程组，它贯穿了整个电磁学，其地位与经典力学中的牛顿三定律相当，揭示了电与磁的相互转化和依赖：
+\begin{equation}\label{maxwelleqold}
+\begin{split}
+%\begin{cases}
+\displaystyle\nabla\times \bm{E} &= \displaystyle-\frac{\partial\bm{B}}{\partial t},\\
+\displaystyle\nabla\times \bm{H} &=\displaystyle\frac{\partial\bm{D}}{\partial t}+\bm{J}_e,\\
+\displaystyle\nabla\cdot \bm{D} &= \displaystyle\rho_e,\\
+\displaystyle\nabla\cdot \bm{B} &= \displaystyle 0
+%\end{cases}
+\end{split}
+\end{equation}
+
+然而从前面的推导可以看出磁场和电场具有高度的对称性，但在方程\eqref{maxwelleqold}中并没有对称性，由此物理学家就在上述方程中引入了\textbf{磁电流密度}$\bm{J}_m$和\textbf{磁电荷密度}$\rho_m$, 以使方程组具有数学上的对称性，就得到了现代的标准时域Maxwell方程组：
+
+\begin{equation}\label{maxwelleq}
+\color{Red}\boxed{
+\begin{aligned}
+%\begin{cases}
+\mathrm{\textbf{Time}\ \ \textbf{Domain: }}\\
+\displaystyle\nabla\times \bm{E} &= \displaystyle-\frac{\partial\bm{B}}{\partial t}-\bm{J}_m,\\
+\displaystyle\nabla\times \bm{H} &=\ \  \displaystyle\frac{\partial\bm{D}}{\partial t}+\bm{J}_e,\\
+\displaystyle\nabla\cdot\bm{D} &= \displaystyle\rho_e,\\
+\displaystyle\nabla\cdot \bm{B} &= \displaystyle \rho_m.
+%\end{cases}
+\end{aligned}}
+\end{equation}
+
+值得注意的是在目前的实验中尚未观测到磁电流和磁荷（磁单极子）的存在，但\textbf{狄拉克}从量子力学的角度证明了\textbf{方程组中只有引入磁电流密度和磁电荷密度，整个电磁场才能与量子力学效应相容}。
+
+\paragraph{$\bullet$ 连续性条件} Maxwell 方程组\eqref{maxwelleq}的右端项并非是孤立存在的，而是具有某种内在的\textbf{连续性条件}。注意到向量场旋度的散度为零，我们对Maxwell方程组的第一个和第二个方程两边取散度，可以得到：
+\begin{equation}\label{timelianxutiaojian}
+\color{Red}\boxed{
+\begin{aligned}
+&\frac{\partial \rho_m}{\partial t}+\nabla\cdot \bm{J}_m=0,\\
+&\frac{\partial \rho_e}{\partial t}\ +\nabla\cdot \bm{J}_e \  = 0.
+\end{aligned}}
+\end{equation}
+
+\paragraph{$\bullet$ 时谐Maxwell方程} 特别地，在时域Maxwell方程中如果时间是简谐的，即满足:
+\begin{equation}\label{timeharmonic}
+\mathcal{U}(\bm{x},t)=\mathcal{U}(\bm{x})e^{\bm{i}\omega t}
+\end{equation}
+其中$\omega$称为\textbf{频率}。为了简化，$\mathcal{U}$ 可以是向量场$\bm{E}$, $\bm{D}$, $\bm{B}$, $\bm{H}$, 以及标量$\rho_e$, $\rho_m$. 同样是为了减少符号的引入，空间方向的函数记号和含时间的函数记号用同一个符号表示。将
+\eqref{timeharmonic}代入到Maxwell方程\eqref{maxwelleq}中我们就得到了\textbf{时谐Maxwell方程}：
+
+\begin{equation}\label{timeharmonicmaxwelleq}
+\color{Red}\boxed{
+\begin{aligned}
+\mathrm{\textbf{Time}\ \ \textbf{Harmonics: }}\\
+%\begin{cases}
+\displaystyle\nabla\times \bm{E} &= \displaystyle-\bm{i}\omega\mu\bm{H}-\bm{J}_m,\\
+\displaystyle\nabla\times \bm{H} &=\ \  \displaystyle \bm{i}\omega\varepsilon\bm{E}+\bm{J}_e,\\
+\displaystyle\nabla\cdot\bm{D} &= \displaystyle\rho_e,\\
+\displaystyle\nabla\cdot \bm{B} &= \displaystyle \rho_m.
+%\end{cases}
+\end{aligned}}
+\end{equation}
+将\eqref{timeharmonic}代入到连续性条件\eqref{timelianxutiaojian}我们可得到\textbf{时谐的连续性条件}:
+\begin{equation}\label{lianxutiaojian}
+\color{Red}\boxed{
+\begin{aligned}
+&\bm{i}\omega\rho_m+\nabla\cdot \bm{J}_m=0,\\
+&\bm{i}\omega\rho_e\ +\nabla\cdot \bm{J}_e \  = 0.
+\end{aligned}}
+\end{equation}
+
+\paragraph{$\bullet$ 向量波动方程} 若电场和磁场函数光滑，对时谐Maxwell方程组\eqref{timeharmonicmaxwelleq}中的第一个和第二个方程两边取旋度，我们得到：
+\begin{equation}\label{vectorwaveeq}
+\begin{split}
+\nabla\times\nabla\times \bm{E} -\omega^2\mu\varepsilon \bm{E}&=-\bm{i}\omega\mu\bm{J}_e -\nabla\times \bm{J}_m,\\
+\nabla\times\nabla\times \bm{H} - \omega^2\mu\varepsilon \bm{H}&=-\bm{i}\omega\varepsilon \bm{J}_m+\nabla \times \bm{J}_e
+\end{split}
+\end{equation}
+
+事实上方程\eqref{vectorwaveeq}之所以叫向量波动方程是因为此方程可以化为向量形式的\textbf{Helmholtz方程}，我们留到第三节来具体讨论。
+
+\section{电场和磁场的势表示}
+上节中介绍了电磁场的基本概念和控制方程——Maxwell方程组，现在我们希望研究方程的解，最基本的方式就是利用某些\textbf{势函数}来表示解，而这些势函数满足某个确定的微分方程。并且这样的势函数表示对Maxwell方程对应的积分方程的导出也起到了重要的作用。而得到势表示的关键技巧就是\textbf{Helholtz 分解}。
+
+\subsection{Helmholtz分解}
+\begin{theorem}\label{helholtzdecom}
+给定一个可微向量场$\bm{W}(\bm{r}) = (W_1(\bm{r}),\ W_2(\bm{r}),\ W_3(\bm{r}))$, $\bm{r}\in\Omega\subset \mathbb{R}^3$, 其中$\Omega$ 是一个具有Lipschitz边界的单连通区域，则存在一个唯一的向量势$\bm{\Phi}(\bm{r})$ 以及一个标量势 $q(\bm{r})$ (相差一个常数) 使得如下的\textbf{正交}分解成立：
+\begin{equation}\label{decom}
+\bm{W} = \bm{W}_1+\bm{W}_2 = \nabla\times \bm{\Phi}+\nabla q,
+\end{equation}
+其中$\bm{\Phi}$和$q$分别满足以下边值问题：
+\begin{equation}\label{phi}
+\begin{split}
+-&\Delta \bm{\Phi} = \nabla\times \bm{W},\ \ \ \ \ \nabla\cdot \bm{\Phi}=0,\\
+&\bm{n}\times\bm{\Phi}= 0,\ \ \ \ \ \ \ \ \ \ \mathrm{on}\ \partial\Omega,
+\end{split}
+\end{equation}
+以及
+\begin{equation}\label{q}
+\begin{split}
+&\Delta q = \nabla\cdot\bm{W},\\
+&\nabla q\cdot\bm{n} = \bm{W}\cdot \bm{n},\ \ \ \  \mathrm{on}\ \partial\Omega.
+\end{split}
+\end{equation}
+如果区域是无界的，则边界认为是无穷远处。
+\end{theorem}
 
 
 
-
-
-
-
-
-
-%\section{电磁场的势表示}
 %\section{电磁波及其在空间中传播的模型}
 %\section{无界区域的处理 —— 吸收人工边界方法}
 

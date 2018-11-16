@@ -1,0 +1,15 @@
+#!/bin/zsh
+fname="电磁场理论基础"
+bibname="bibfile"
+#PATH="/Users/zhangrui/Documents/GitHub/The-Lecture-of-Electromagnetic/"
+#cd $PATH
+#bibtex $bibname
+xelatex $fname.tex
+xelatex $fname.tex
+open $fname.pdf
+rm $fname.log
+rm $fname.toc
+rm $fname.synctex.gz
+rm $fname.out
+rm $fname.aux
+rm $fname.lof
